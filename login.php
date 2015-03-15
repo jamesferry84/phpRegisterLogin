@@ -1,5 +1,7 @@
 <?php
 include 'core/init.php';
+include 'includes/head.php';
+include 'includes/navbar.php';
 
 if (empty($_POST) === false) {
     $username = $_POST['username'];
@@ -12,7 +14,14 @@ if (empty($_POST) === false) {
         $errors[] = 'Account is not activated';
     }
     else {
-
+        $login = login($username, $password);
+        if ($login === false) {
+            $errors[] = 'That username/combo is incorrect';
+        } else {
+            $_SESSION['user_id'] = $login;
+            header('Location: index.php');
+            exit();
+        }
     }
 
     print_r($errors);

@@ -7,6 +7,8 @@
         <?php include 'includes/navbar.php'?>
         <?php include 'includes/leftcolumn.php'?>
         <?php include 'includes/rightcolumn.php'?>
+
+
     </div>
 </body>
 </html>
