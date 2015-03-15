@@ -1,9 +1,18 @@
 <?php
+
 function user_exists($username) {
     $username = sanitize($username);
-    echo $username;
-    $query = mysql_query("SELECT COUNT('user_id') FROM 'users' WHERE 'username' = '$username'");
-    if (mysql_result($query,0) == 0)
+
+    $query = sprintf("SELECT COUNT(user_id) FROM users WHERE username = '%s'", $username);
+    $result = mysql_query($query);
+
+//    if (!$result) {
+//        $message = 'invalid query: ' . mysql_error() . "\n";
+//        $message .= 'whole query: ' . $result;
+//        die($message);
+//    }
+
+    if (mysql_result($result,0) == 0)
     {
         echo "no results returned";
     }
@@ -11,7 +20,7 @@ function user_exists($username) {
     {
         echo "results returned";
     }
-    return (mysql_result($query,0) == 1) ? true : false;
+    return (mysql_result($result,0) == 1) ? true : false;
 }
 
 function user_active($username) {
