@@ -1,7 +1,6 @@
 <?php
 include 'core/init.php';
-include 'includes/head.php';
-include 'includes/navbar.php';
+
 
 if (empty($_POST) === false) {
     $username = $_POST['username'];
@@ -23,8 +22,15 @@ if (empty($_POST) === false) {
             exit();
         }
     }
+    include 'includes/head.php';
+    include 'includes/navbar.php';
+    if (empty($errors) === false) {
+        ?>
+        <h2>Tried to log you in but...</h2>
+<?php
+        echo output_errors($errors);
+    }
 
-    print_r($errors);
 }
 
 ?>
